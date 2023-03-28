@@ -1,0 +1,30 @@
+@use "variables" as *;
+
+.header {
+  //   height: 100vh;
+  position: sticky;
+  top: 0;
+  box-shadow: 0px 10px 61px -22px $tertiary;
+  background: $seconday;
+}
+.navbar {
+  grid-column: -1;
+}
+
+.navbar__list {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+
+  a {
+    display: inline-block;
+    font-family: $body-font;
+    font-weight: $bold;
+    color: $tertiary;
+  }
+
+  img {
+    height: 1.3rem;
+    width: 1.3rem;
+  }
+}

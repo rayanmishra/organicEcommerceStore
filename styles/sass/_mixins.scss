@@ -1,0 +1,16 @@
+@use "./variables" as *;
+
+// creating a map for media queries
+
+$breakpoints-down: (
+  "small": 500px,
+  "medium": 800px,
+  "large": 1200px,
+);
+
+// breakpoint is the name of function. size is the parameter. map-get calls the breakpoint-up
+@mixin breakpoint($size) {
+  @media (max-width: map-get($breakpoints-down, $size)) {
+    @content;
+  }
+}
