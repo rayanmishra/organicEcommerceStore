@@ -4,8 +4,9 @@
   //   height: 100vh;
   position: sticky;
   top: 0;
-  box-shadow: 0px 10px 61px -22px $tertiary;
+  box-shadow: 0px 10px 61px -22px #b6b6b6;
   background: $seconday;
+  z-index: 10;
 }
 .navbar {
   grid-column: -1;

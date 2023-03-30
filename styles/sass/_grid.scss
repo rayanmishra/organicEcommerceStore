@@ -11,7 +11,18 @@
 
 .header--grid {
   grid-template-columns: repeat(2, 1fr);
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+  padding-top: 0.8rem;
+  padding-bottom: 0.8rem;
   align-items: center;
+}
+
+.aboutUs--grid {
+  grid-template-columns: repeat(2, 1fr);
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+  gap: 5rem;
+}
+
+.product--grid {
+  grid-template-columns: repeat(4, 1fr);
 }
