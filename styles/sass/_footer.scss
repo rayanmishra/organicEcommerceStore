@@ -1,0 +1,22 @@
+@use "variables" as *;
+
+.footer {
+  background: url(../../assets/cow.png);
+  background-repeat: no-repeat;
+  background-position: bottom;
+
+  padding-top: 12rem;
+  padding-bottom: 10rem;
+}
+
+.footer--heading {
+  font-family: $heading-font;
+  font-weight: $bold;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  margin-left: 1rem;
+}
+
+.footer-link {
+  color: $tertiary;
+}
