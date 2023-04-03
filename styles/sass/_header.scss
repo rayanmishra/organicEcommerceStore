@@ -1,15 +1,52 @@
 @use "variables" as *;
 
+/***********************/
+/* Header Section */
+/***********************/
+
 .header {
-  //   height: 100vh;
   position: sticky;
   top: 0;
   box-shadow: 0px 10px 61px -22px #b6b6b6;
   background: $seconday;
   z-index: 10;
 }
+
+.header__logo {
+  cursor: pointer;
+}
 .navbar {
   grid-column: -1;
+}
+
+.nav--burger {
+  display: none;
+  font-size: 3rem;
+  padding-top: 10px;
+  cursor: pointer;
+  justify-self: center;
+  align-self: end;
+
+  @media (max-width: 1100px) {
+    display: inline-block;
+  }
+  @media (max-width: 700px) {
+    justify-self: end;
+  }
+}
+.nav--cart {
+  display: none;
+  cursor: pointer;
+  height: 2rem;
+  width: 2rem;
+  justify-self: end;
+  align-self: center;
+  @media (max-width: 1100px) {
+    display: inline-block;
+  }
+  @media (max-width: 700px) {
+    display: none;
+  }
 }
 
 .navbar__list {
@@ -17,15 +54,46 @@
   gap: 2rem;
   align-items: center;
 
+  @media (max-width: 1100px) {
+    display: none;
+  }
+
   a {
     display: inline-block;
     font-family: $body-font;
     font-weight: $bold;
     color: $tertiary;
+
+    padding: 15px 20px;
+    position: relative;
+  }
+
+  a:after {
+    background: transparent;
+    bottom: 0;
+    content: "";
+    display: block;
+    height: 2px;
+    left: 50%;
+    position: absolute;
+    background: $primary;
+    transition: width 0.3s ease 0s, left 0.3s ease 0s;
+    width: 0;
+  }
+  a:hover:after {
+    width: 100%;
+    left: 0;
   }
 
   img {
     height: 1.3rem;
     width: 1.3rem;
+    cursor: pointer;
+
+    transition: scale 0.5s;
+  }
+
+  img:hover {
+    transform: scale(1.5);
   }
 }

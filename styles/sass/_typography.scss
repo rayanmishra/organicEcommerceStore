@@ -1,5 +1,8 @@
 @use "variables" as *;
 
+/***********************/
+/* Typography */
+/***********************/
 .body--text {
   font-family: $body-font;
   font-weight: $medium;
@@ -19,8 +22,26 @@
   margin-inline: auto;
   text-align: center;
   margin-bottom: 4rem;
+
+  @media (max-width: 1100px) {
+    width: 80%;
+  }
+  @media (max-width: 750px) {
+    width: 85%;
+
+    h2 {
+      font-size: 1.8rem;
+    }
+  }
+  @media (max-width: 400px) {
+    width: 100%;
+  }
 }
 
 .section--text {
   font-size: 1.2rem;
+
+  @media (max-width: 750px) {
+    font-size: 1.1rem;
+  }
 }

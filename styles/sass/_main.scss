@@ -1,7 +1,7 @@
 @use "variables" as *;
 
 /***********************/
-/* Global Section */
+/* Global components */
 /***********************/
 
 .btn:link,
@@ -13,6 +13,12 @@
   background-color: $primary;
   color: $seconday;
   border-radius: 35px;
+  transition: background-color 0.3s;
+}
+
+.btn:hover,
+.btn:active {
+  background-color: #195701;
 }
 
 .btn--bold:link,
@@ -39,16 +45,7 @@
   background-position: center;
 }
 
-.hero--grid {
-  grid-template-columns: repeat(2, 1fr);
-  padding: 8rem 0;
-  gap: 2rem;
-}
-
 .hero__header {
-  //   display: flex;
-  //   flex-direction: column;
-  //   justify-content: center;
   width: 70%;
 
   h1 {
@@ -62,10 +59,63 @@
   p {
     margin-bottom: 2rem;
   }
+
+  @media (max-width: 1100px) {
+    width: 100%;
+    order: 2;
+
+    h1,
+    p {
+      text-align: center;
+    }
+
+    .btn--hero {
+      text-align: center;
+    }
+  }
+  @media (max-width: 650px) {
+    h1 {
+      font-size: 2rem;
+      line-height: 2.7rem;
+    }
+
+    p {
+      margin-bottom: 1rem;
+    }
+  }
+
+  @media (max-width: 400px) {
+    h1 {
+      font-size: 1.8rem;
+      line-height: 2.5rem;
+    }
+
+    p {
+      margin-bottom: 0.8rem;
+      font-size: 1rem;
+      line-height: 1.3rem;
+    }
+  }
 }
 
 .hero__imageContainer {
   width: 90%;
+  @media (max-width: 1100px) {
+    width: 60%;
+    order: 1;
+    justify-self: center;
+  }
+  @media (max-width: 900px) {
+    width: 70%;
+  }
+  @media (max-width: 650px) {
+    width: 90%;
+    align-self: center;
+  }
+
+  @media (max-width: 350px) {
+    width: 100%;
+  }
 
   img {
     width: 100%;
@@ -78,6 +128,56 @@
 
 .aboutUs {
   margin-bottom: 16rem;
+
+  @media (max-width: 1100px) {
+    margin-bottom: 10rem;
+
+    @media (max-width: 400px) {
+      margin-bottom: 8rem;
+    }
+
+    .aboutUs__text {
+      order: 2;
+      width: 100%;
+
+      h2 {
+        font-size: 2rem;
+      }
+
+      .about--text {
+        font-size: 1.1rem;
+      }
+
+      a {
+        margin-top: 1rem;
+      }
+    }
+
+    .aboutUs__banner {
+      width: 85%;
+      justify-self: center;
+    }
+
+    .btn--about {
+      text-align: center;
+    }
+  }
+
+  @media (max-width: 750px) {
+    h2 {
+      font-size: 1.5rem;
+    }
+    .about--text {
+      font-size: 1rem;
+    }
+
+    .aboutUs__banner {
+      align-self: center;
+      p {
+        font-size: 1.5rem;
+      }
+    }
+  }
 }
 
 .aboutUs__text {
@@ -124,6 +224,10 @@
 
 .product {
   margin-bottom: 16rem;
+
+  @media (max-width: 1100px) {
+    margin-bottom: 12rem;
+  }
 }
 
 .product__card {
@@ -133,6 +237,7 @@
     width: 100%;
     display: block;
   }
+  cursor: pointer;
 }
 
 .product--heading {
@@ -189,6 +294,14 @@
 }
 
 .gallery__container {
+  img {
+    cursor: pointer;
+    transition: filter 0.3s;
+  }
+
+  img:hover {
+    filter: brightness(70%);
+  }
 }
 
 .tab--button {
@@ -197,6 +310,14 @@
   margin-top: 4rem;
   margin-bottom: 4rem;
   justify-content: center;
+
+  @media (max-width: 1100px) {
+    gap: 1rem;
+  }
+  @media (max-width: 800px) {
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
 }
 
 .btn--tab {
@@ -211,6 +332,10 @@
   background: $primary;
   padding-top: 12rem;
   padding-bottom: 10rem;
+
+  @media (max-width: 400px) {
+    padding-top: 8rem;
+  }
 }
 
 .news__gallery {
