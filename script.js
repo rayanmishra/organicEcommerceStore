@@ -22,6 +22,8 @@ main.addEventListener("click", () => {
 // **************************************************************************
 
 // IMAGE CAROUSEL
+// Approach : 2
+// Using Array so only 1 element(image) is seen(exists in viewport) at a given time so chnaging screen size willl not affect the slider. When the button is clicked: Empty the slider and show the next element (image) of the array. Repeat.Profit!
 
 const leftBtn = document.querySelector(".leftScroll");
 const rightBtn = document.querySelector(".rightScroll");
@@ -34,7 +36,7 @@ imgContainer.innerHTML = "";
 imgContainer.appendChild(images[0]);
 
 function showNextImage() {
-  // create an array from images that allow of indexOf method to get the current image index(method chaining)
+  // create an array from images that allow of indexOf method to get the current image index
   const currentImgIndex = Array.from(images).indexOf(imgContainer.firstChild);
 
   let nextImg;
@@ -71,8 +73,8 @@ function showPrevImage() {
 rightBtn.addEventListener("click", showNextImage);
 leftBtn.addEventListener("click", showPrevImage);
 
-// Experiment : FAILED
-// Reason : (the image container is not responsive to changing screen sizes.)
+// Approach 1 : Failed
+// Reason : (the image container is not responsive to changing screen sizes and can see two images when screen sizes changes.)
 // Approach :find out the width of the container and then scroll that much everytime the button is clicked. and then loop the first and last together.
 
 // const leftBtn = document.querySelector(".leftScroll");
@@ -98,235 +100,3 @@ leftBtn.addEventListener("click", showPrevImage);
 //   }
 // });
 //
-
-// Shoppping cart
-
-// add to cart trigger the event
-// the cart is updated with the item somehow
-
-// const cartContainer = document.querySelector(".cart");
-// const cartArea = document.querySelector(".cartItems");
-// const closeBtn = document.querySelector(".btn--close-cart");
-// const cartOpen = document.querySelector(".cart--icon");
-
-// const prod1 = {
-//   id: 1,
-//   count: 1,
-//   src: "./assets/product1.jpeg",
-//   price: "$35",
-// };
-
-// const prod2 = {
-//   id: 2,
-//   count: 1,
-//   src: "./assets/product2.jpeg",
-//   price: "$35",
-// };
-
-// const prod3 = {
-//   id: 3,
-//   count: 1,
-//   src: "./assets/product3.jpeg",
-//   price: "$35",
-// };
-
-// const prod4 = {
-//   id: 4,
-//   count: 1,
-//   src: "./assets/product4.jpeg",
-//   price: "$35",
-// };
-
-// const prod5 = {
-//   id: 5,
-//   count: 1,
-//   src: "./assets/product5.jpeg",
-//   price: "$35",
-// };
-
-// const prod6 = {
-//   id: 6,
-//   count: 1,
-//   src: "./assets/product6.jpeg",
-//   price: "$35",
-// };
-
-// const prod7 = {
-//   id: 7,
-//   count: 1,
-//   src: "./assets/product7.jpeg",
-//   price: "$35",
-// };
-
-// const prod8 = {
-//   id: 8,
-//   count: 1,
-//   src: "./assets/product8.jpeg",
-//   price: "$35",
-// };
-
-// const items_array = [prod1, prod2, prod3, prod4, prod5, prod6, prod7, prod8];
-
-// const cart = [];
-
-// // add to cart
-// const addToCart = function (items) {
-//   items.forEach(function (product) {
-//     const existingProduct = cart.find((p) => p.id === product.id);
-//     if (existingProduct) {
-//       existingProduct.count += 1;
-//     } else {
-//       cart.push({ ...product, count: 1 });
-//     }
-//   });
-//   const cartItems = cart
-//     .map(function (product) {
-//       return `
-
-//         <div class="cart--card">
-//           <div class="cart__image">
-//             <img src="${product.src}" alt="product image" />
-//           </div>
-//           <p>Price: ${product.price} </p>
-//           <p>Qty: ${product.count - 1}</p>
-//         </div>
-//         `;
-//     })
-//     .join("");
-
-//     cartArea.innerHTML = "";
-//   console.log("baaam");
-//   cartArea.insertAdjacentHTML("beforeend", cartItems);
-// };
-
-// // buttons to link the product and the cart
-
-// const addToCartLinks = document.querySelectorAll(".cart--button a");
-
-// addToCartLinks.forEach(function (link) {
-//   link.addEventListener("click", function (e) {
-//     e.preventDefault();
-//     console.log("booom");
-//     const productIndex = link.getAttribute("data-product-index");
-//     const product = items_array[productIndex];
-//     cart.push(product);
-//     addToCart(cart);
-//   });
-// });
-
-// cartOpen.addEventListener("click", function () {
-//   cartContainer.classList.remove("hidden");
-// });
-
-// closeBtn.addEventListener("click", function () {
-//   cartContainer.classList.add("hidden");
-// });
-
-// 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-const cartContainer = document.querySelector(".cart");
-const cartArea = document.querySelector(".cartItems");
-const closeBtn = document.querySelector(".btn--close-cart");
-const cartOpen = document.querySelector(".cart--icon");
-
-const items_array = [
-  {
-    id: 1,
-    count: 1,
-    src: "./assets/product1.jpeg",
-    price: "$35",
-  },
-  {
-    id: 2,
-    count: 1,
-    src: "./assets/product2.jpeg",
-    price: "$35",
-  },
-  {
-    id: 3,
-    count: 1,
-    src: "./assets/product3.jpeg",
-    price: "$35",
-  },
-  {
-    id: 4,
-    count: 1,
-    src: "./assets/product4.jpeg",
-    price: "$35",
-  },
-  {
-    id: 5,
-    count: 1,
-    src: "./assets/product5.jpeg",
-    price: "$35",
-  },
-  {
-    id: 6,
-    count: 1,
-    src: "./assets/product6.jpeg",
-    price: "$35",
-  },
-  {
-    id: 7,
-    count: 1,
-    src: "./assets/product7.jpeg",
-    price: "$35",
-  },
-  {
-    id: 8,
-    count: 1,
-    src: "./assets/product8.jpeg",
-    price: "$35",
-  },
-];
-
-let cart = [];
-
-// add to cart
-const addToCart = function (product) {
-  const existingProduct = cart.find((p) => p.id === product.id);
-  if (existingProduct) {
-    existingProduct.count += 1;
-  } else {
-    cart.push({ ...product, count: 1 });
-  }
-};
-
-const renderCartItems = function () {
-  const cartItems = cart
-    .map(function (product) {
-      return `
-        <div class="cart--card">
-          <div class="cart__image">
-            <img src="${product.src}" alt="product image" />
-          </div>
-          <p>Price: ${product.price} </p>
-          <p>Qty: ${product.count}</p>
-        </div>
-        `;
-    })
-    .join("");
-
-  cartArea.innerHTML = "";
-  cartArea.insertAdjacentHTML("beforeend", cartItems);
-};
-
-const addToCartLinks = document.querySelectorAll(".cart--button a");
-
-addToCartLinks.forEach((link) => {
-  link.addEventListener("click", (e) => {
-    e.preventDefault();
-    const productIndex = link.getAttribute("data-product-index");
-    const product = items_array[productIndex];
-
-    addToCart(product);
-    renderCartItems();
-  });
-});
-
-cartOpen.addEventListener("click", () => {
-  cartContainer.classList.remove("hidden");
-});
-
-closeBtn.addEventListener("click", () => {
-  cartContainer.classList.add("hidden");
-});
