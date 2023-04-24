@@ -41,7 +41,7 @@
             <li><a href="./index.html">Home</a></li>
             <li><a href="#">Blog</a></li>
             <li><a href="./contact.html">Contact</a></li>
-            <li><img src="./assets/icons/cart.svg" /></li>
+            <li><img class="cart--icon" src="./assets/icons/cart.svg" /></li>
           </ul>
         </nav>
         <div class="nav--burger"><ion-icon name="menu-outline"></ion-icon></div>
@@ -51,7 +51,7 @@
 
     <!-- Hero section -->
 
-    <main>
+    <main id="main--section">
       <section class="heroSection">
         <div class="wrapper grid hero--grid">
           <div class="hero__header">
@@ -125,7 +125,9 @@
               <p><span>$370</span></p>
             </div>
             <div class="cart--button">
-              <a href="#" class="btn btn--cart">Add To Cart</a>
+              <a href="#" data-product-index="0" class="btn btn--cart"
+                >Add To Cart</a
+              >
             </div>
           </div>
 
@@ -142,7 +144,9 @@
               <p><span>$370</span></p>
             </div>
             <div class="cart--button">
-              <a href="#" class="btn btn--cart">Add To Cart</a>
+              <a href="#" data-product-index="1" class="btn btn--cart"
+                >Add To Cart</a
+              >
             </div>
           </div>
 
@@ -159,7 +163,9 @@
               <p><span>$370</span></p>
             </div>
             <div class="cart--button">
-              <a href="#" class="btn btn--cart">Add To Cart</a>
+              <a href="#" data-product-index="2" class="btn btn--cart"
+                >Add To Cart</a
+              >
             </div>
           </div>
 
@@ -176,7 +182,9 @@
               <p><span>$370</span></p>
             </div>
             <div class="cart--button">
-              <a href="#" class="btn btn--cart">Add To Cart</a>
+              <a href="#" data-product-index="3" class="btn btn--cart"
+                >Add To Cart</a
+              >
             </div>
           </div>
 
@@ -193,7 +201,9 @@
               <p><span>$370</span></p>
             </div>
             <div class="cart--button">
-              <a href="#" class="btn btn--cart">Add To Cart</a>
+              <a href="#" data-product-index="4" class="btn btn--cart"
+                >Add To Cart</a
+              >
             </div>
           </div>
 
@@ -210,7 +220,9 @@
               <p><span>$370</span></p>
             </div>
             <div class="cart--button">
-              <a href="#" class="btn btn--cart">Add To Cart</a>
+              <a href="#" data-product-index="5" class="btn btn--cart"
+                >Add To Cart</a
+              >
             </div>
           </div>
 
@@ -227,7 +239,9 @@
               <p><span>$370</span></p>
             </div>
             <div class="cart--button">
-              <a href="#" class="btn btn--cart">Add To Cart</a>
+              <a href="#" data-product-index="6" class="btn btn--cart"
+                >Add To Cart</a
+              >
             </div>
           </div>
 
@@ -244,7 +258,9 @@
               <p><span>$370</span></p>
             </div>
             <div class="cart--button">
-              <a href="#" class="btn btn--cart">Add To Cart</a>
+              <a href="#" data-product-index="7" class="btn btn--cart"
+                >Add To Cart</a
+              >
             </div>
           </div>
           <!-- 0000000000000 -->
@@ -272,7 +288,7 @@
             <a href="#" class="btn btn--tab">Agency</a>
           </div>
           <div class="gallery__container">
-            <div class="grid--3--container grid">
+            <div class="image__slider">
               <img
                 src="./assets/gallery1.jpg"
                 alt="image of apple held by a person"
@@ -286,20 +302,7 @@
                 src="./assets/gallery3.jpg"
                 alt="picture many types of berries and flowers"
               />
-            </div>
-            <div class="grid--2--container grid">
-              <img
-                class="image--span--01"
-                src="./assets/gallery4.jpg"
-                alt="pciture of a farmer carrying fresh produce"
-              />
-              <img
-                class="image--span--02"
-                src="./assets/gallery5.jpg"
-                alt="images of pear"
-              />
-            </div>
-            <div class="grid--3--container grid">
+
               <img
                 src="./assets/gallery6.jpg"
                 alt="picture of some raddish and onions"
@@ -314,12 +317,21 @@
                 alt="image of fresh carrots dug out"
               />
             </div>
+            <div class="scrolls">
+              <div class="leftScroll">
+                <ion-icon name="chevron-back-circle-outline"></ion-icon>
+              </div>
+              <div class="rightScroll">
+                <ion-icon name="chevron-forward-circle-outline"></ion-icon>
+              </div>
+            </div>
           </div>
           <div class="load--btn">
             <a href="#" class="btn btn--bold">Load More</a>
           </div>
         </div>
       </section>
+
       <!-- News section -->
       <section class="news">
         <div class="wrapper">
@@ -496,5 +508,7 @@
         </div>
       </div>
     </footer>
+
+    <script src="./script/script.js" type="module"></script>
   </body>
 </html>
