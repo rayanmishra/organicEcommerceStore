@@ -1,4 +1,5 @@
-'use strict';
+import { totalInventory } from './database.js';
+// ('use strict');
 
 // HAMBURGER MENU
 
