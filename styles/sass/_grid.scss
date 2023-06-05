@@ -161,3 +161,21 @@
     grid-template-rows: 1fr 1fr;
   }
 }
+
+.cart--grid {
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  max-height: 30rem;
+  overflow-y: scroll;
+}
+
+.cart__product {
+  grid-template-columns: repeat(4, 1fr);
+  max-height: 8rem;
+  gap: 3rem;
+  align-items: center;
+
+  img {
+    width: 80%;
+  }
+}

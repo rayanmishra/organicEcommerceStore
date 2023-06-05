@@ -22,6 +22,29 @@ const addToDatabase = (key, value) => {
   set(customRef, value);
 };
 
+// Cart display
+
+const cartIcon = document.querySelector('.nav--cart');
+const overlay = document.querySelector('.overlay');
+const cartDisplay = document.querySelector('.cart');
+const cartClose = document.querySelector('.close__cart');
+
+const openCart = function () {
+  cartDisplay.classList.remove('hidden');
+  overlay.classList.remove('hidden');
+};
+
+const closeCart = function () {
+  cartDisplay.classList.add('hidden');
+  overlay.classList.add('hidden');
+};
+
+// click to open cart
+cartIcon.addEventListener('click', openCart);
+// click on close button and outside cart to close cart
+cartClose.addEventListener('click', closeCart);
+overlay.addEventListener('click', closeCart);
+
 // DATA SECTION
 const cheapPrice = () => parseFloat(Math.random() * (5 - 1) + 1).toFixed(2);
 const expPrice = () => parseFloat(Math.random() * (15 - 10) + 10).toFixed(2);
@@ -136,6 +159,9 @@ onValue(inventoryRef, function (snapshot) {
   const inventory = ourData;
   displayItems(inventory);
 });
+
+// Function to add item to cart
+
 // const emptyCartMessage = document.querySelector('.empty-cart-message');
 
 // productGallery.addEventListener('click', function (e) {
