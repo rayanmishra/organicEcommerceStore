@@ -8,27 +8,29 @@ import {
   get,
   push,
   remove,
+  update,
 } from 'https://www.gstatic.com/firebasejs/9.20.0/firebase-database.js';
 
+// Initializing the Firebase database
 const myDatabase = getDatabase(app);
 
+// Creating references to the 'cart' and 'inventory' nodes in the Firebase database
 const cartRef = ref(myDatabase, '/cart');
 const inventoryRef = ref(myDatabase, '/inventory');
 
 // creating a function to add to database
+// const addToDatabase = (key, value) => {
+//   const customRef = ref(myDatabase, key);
+//   set(customRef, value);
+// };
 
-const addToDatabase = (key, value) => {
-  const customRef = ref(myDatabase, key);
-  set(customRef, value);
-};
-
-// Cart display
-
+// Selectors for UI elements related to the cart
 const cartIcon = document.querySelector('.nav--cart');
 const overlay = document.querySelector('.overlay');
 const cartDisplay = document.querySelector('.cart');
 const cartClose = document.querySelector('.close__cart');
 
+// Functions to open and close the cart overlay
 const openCart = function () {
   cartDisplay.classList.remove('hidden');
   overlay.classList.remove('hidden');
@@ -39,16 +41,17 @@ const closeCart = function () {
   overlay.classList.add('hidden');
 };
 
-// click to open cart
+// Event listeners to open and close the cart overlay
 cartIcon.addEventListener('click', openCart);
-// click on close button and outside cart to close cart
 cartClose.addEventListener('click', closeCart);
 overlay.addEventListener('click', closeCart);
 
 // DATA SECTION
+// Functions to generate random prices for the initial inventory
 const cheapPrice = () => parseFloat(Math.random() * (5 - 1) + 1).toFixed(2);
 const expPrice = () => parseFloat(Math.random() * (15 - 10) + 10).toFixed(2);
 
+// Initial inventory of the products
 export const totalInventory = [
   {
     productName: 'Tomatoes',
@@ -112,18 +115,8 @@ for (let i = 0; i <= 7; i++) {
   totalInventory[i].base = totalInventory[i].price;
 }
 
-const cart = [0];
-
-// adding the inventory to database
-// addToDatabase('inventory', totalInventory);
-
-// // adding cart to data
-// addToDatabase('cart', cart);
-// // console.log(cart);
-
-// // Function to Display the items on the page
+// Function to Display the items on the page
 const productGallery = document.querySelector('.product__gallery');
-
 const displayItems = (stock) => {
   productGallery.innerHTML = '';
 
@@ -151,8 +144,8 @@ const displayItems = (stock) => {
     productGallery.appendChild(newListItem);
   });
 };
-// // Importing data from Firebase
 
+// Fetch and display the inventory from Firebase
 onValue(inventoryRef, function (snapshot) {
   const ourData = snapshot.val();
   // storing the data in inventory variable
@@ -160,128 +153,144 @@ onValue(inventoryRef, function (snapshot) {
   displayItems(inventory);
 });
 
-// Function to add item to cart
+// Function to add item to cart when its 'Add To Cart' button is clicked
+productGallery.addEventListener('click', function (e) {
+  e.preventDefault();
+  if (e.target.classList.contains('btn--cart')) {
+    const chosenProductIndex = e.target.attributes.dataindex.value;
+    const selectedProductRef = ref(
+      myDatabase,
+      `/inventory/${chosenProductIndex}`
+    );
 
-// const emptyCartMessage = document.querySelector('.empty-cart-message');
+    get(selectedProductRef).then((snapshot) => {
+      const productData = snapshot.val();
+      productData.qty = 1;
+      push(cartRef, productData);
+      recalculateTotalCost();
+    });
+  }
+});
 
-// productGallery.addEventListener('click', function (e) {
-//   // get parent list item from child button
+// Function to update the UI
+onValue(cartRef, function (snapshot) {
+  // When the value changes, update the cart
+  const cartData = snapshot.val();
+  if (cartData === null) {
+    recalculateTotalCost();
+  } else {
+    updateCart(cartData);
+  }
+});
 
-//   if (e.target.tagName === 'BUTTON') {
-//     const chosenProductIndex = e.target.attributes.dataindex.value;
-//     const selectedProductRef = ref(
-//       myDatabase,
-//       `/inventory/${chosenProductIndex}`
-//     );
+// Functions for updating the UI of the cart and recalculating the total cost
+const emptyCartMessage = document.querySelector('.cart--empty');
+const updateCart = (cartData) => {
+  const cartList = document.querySelector('.cart--grid');
 
-//     get(selectedProductRef).then((snapshot) => {
-//       const productData = snapshot.val();
+  cartList.innerHTML = '';
 
-//       productData.qty = 1;
-//       push(cartRef, productData);
-//     });
-//   }
-// });
+  if (cartData && Object.keys(cartData).length > 0) {
+    emptyCartMessage.classList.add('hidden');
+  } else {
+    emptyCartMessage.classList.remove('hidden');
+  }
 
-// onValue(cartRef, function (snapshot) {
-//   const cartData = snapshot.val();
+  // Storing quantities and prices for the cart total
+  const qtyArray = [];
+  const costArray = [];
 
-//   updateCart(cartData);
-// });
+  for (let key in cartData) {
+    const item = cartData[key];
 
-// const updateCart = (cartData) => {
-//   const cartDropdownList = document.querySelector('.cart-dropdown ul');
+    let existingCartItem = cartList.querySelector(`div[data-id="${item.id}"]`);
 
-//   cartDropdownList.innerHTML = '';
+    if (existingCartItem) {
+      let qtyElement = existingCartItem.querySelector(
+        '.cart--qty > .cart--text'
+      );
+      let priceElement = existingCartItem.querySelector('.cart--price');
+      item.qty = Number(qtyElement.textContent) + 1;
+      item.newPrice = item.price * item.qty;
+      qtyElement.textContent = item.qty;
+      priceElement.textContent = `$${item.newPrice.toFixed(2)}`;
+      recalculateTotalCost();
+    } else {
+      item.newPrice = item.price * item.qty;
+      const newCartItem = document.createElement('div');
+      newCartItem.classList.add('cart__product', 'grid');
+      newCartItem.setAttribute('data-id', cartData[key].id);
+      newCartItem.innerHTML = `
+        <img src="${item.src}" alt="image of ${item.productName}" />
+        <p class="cart--text">${item.productName}</p>
+        <div class="cart--qty">
+          <p class="cart--symbol minus">&minus;</p>
+          <p class="cart--text">${item.qty}</p>
+          <p class="cart--symbol plus">&plus;</p>
+        </div>
+        <p class="cart--text cart--price">$${item.newPrice.toFixed(2)}</p>
+      `;
+      cartList.appendChild(newCartItem);
 
-//   // removes empty cart message when cart exists and contains items
-//   if (cartData && Object.keys(cartData).length > 0) {
-//     emptyCartMessage.classList.add('make-invisible');
-//   }
-//   // adds empty cart message back when when cart is empty
-//   else {
-//     emptyCartMessage.classList.remove('make-invisible');
-//   }
+      // Handling click events on plus and minus symbols
+      const minusButton = newCartItem.querySelector(
+        '.cart--qty > .cart--symbol.minus'
+      );
+      const plusButton = newCartItem.querySelector(
+        '.cart--qty > .cart--symbol.plus'
+      );
+      const qtyElement = newCartItem.querySelector('.cart--qty > .cart--text');
+      const priceElement = newCartItem.querySelector('.cart--price');
 
-//   let listItemIndex = 0;
-//   // for cart totals
-//   const qtyArray = [];
-//   const costArray = [];
+      minusButton.addEventListener('click', async () => {
+        if (item.qty > 0) {
+          item.qty -= 1;
+          item.newPrice = item.price * item.qty;
+          if (item.qty === 0) {
+            await remove(ref(myDatabase, `/cart/${key}`)); // remove item from Firebase
+            cartList.removeChild(newCartItem);
+          } else {
+            update(ref(myDatabase, `/cart/${key}`), { qty: item.qty }); // update quantity in Firebase
+            qtyElement.textContent = item.qty;
+            priceElement.textContent = `$${item.newPrice.toFixed(2)}`;
+          }
+          // Always recalculate the total cost after updating Firebase, to ensure we're fetching the latest state of the cart.
+          recalculateTotalCost();
+        }
+      });
+      plusButton.addEventListener('click', () => {
+        item.qty += 1;
+        item.newPrice = item.price * item.qty;
+        update(ref(myDatabase, `/cart/${key}`), { qty: item.qty }); // update quantity in Firebase
+        qtyElement.textContent = item.qty;
+        priceElement.textContent = `$${item.newPrice.toFixed(2)}`;
+        recalculateTotalCost();
+      });
+    }
+  }
+};
 
-//   for (let key in cartData) {
-//     const newCartItem = document.createElement('li');
+const recalculateTotalCost = async () => {
+  const snapshot = await get(cartRef);
+  const cartData = snapshot.val();
+  const totalCostElement = document.querySelector('.total-cost');
 
-//     newCartItem.classList.add('full-cart');
-//     const item = cartData[key];
+  if (cartData) {
+    const costArray = [];
 
-//     const uniqueId = Object.keys(cartData)[listItemIndex];
-//     listItemIndex += 1;
+    for (let key in cartData) {
+      const item = cartData[key];
+      const quantities = item.qty || 0;
+      const prices = (parseFloat(item.price) || 0) * quantities;
+      costArray.push(prices);
+    }
 
-//     newCartItem.innerHTML = `
-//       <div class="arrows">
-//           <image class=arrows src="./organic-project/assets/icons/chevron-up-outline.svg" alt="up arrow"></image>
-//           <p>${item.qty}</p>
-//           <img class=arrows src="./organic-project/assets/icons/chevron-down-outline.svg" alt="down arrow">
-//       </div>
-//       <img class="product-image" src=${item.src} alt=${item.alt}/>
-//       <div class="cart-dropdown-info-container">
-//           <h4>${item.productName}</h4>
-//           <p class="price">${item.price}</p>
-//       </div>
-//       <div id=${uniqueId} class="cart-x">
-//           <div class="lines a"></div>
-//           <div class="lines b"></div>
-//       </div>
-//     `;
-//     cartDropdownList.append(newCartItem);
-
-//     // for cart totals
-//     const quantities = cartData[key].qty;
-//     const prices = parseFloat(cartData[key].price);
-//     qtyArray.push(quantities);
-//     costArray.push(prices);
-//   }
-//   cartTotals(qtyArray, costArray);
-// };
-
-// const cartTotals = (qtyArray, costArray) => {
-//   const cartCounter = document.querySelector('.item-num > p');
-//   const totalCost = document.querySelector('.total-cost > p');
-//   const subtotal = document.querySelector('.subtotal').lastElementChild;
-//   // console.log(subtotal);
-//   const cartItemTotal = qtyArray.reduce((total, num) => {
-//     return total + num;
-//   });
-//   const cartCostTotal = costArray.reduce((total, num) => {
-//     return total + num;
-//   });
-//   cartCounter.textContent = cartItemTotal;
-//   totalCost.textContent = '$' + cartCostTotal.toFixed(2);
-//   subtotal.textContent = '$' + cartCostTotal.toFixed(2);
-// };
-
-// /* #region - cart item removal */
-// const cartDropdownList = document.querySelector('.cart-dropdown-list');
-
-// // const deletedCartItem = cartRemoveButton.parentElement;
-
-// const removeCartItem = (e) => {
-//   let clickedElement = e.target;
-//   // runs only when X is clicked
-//   if (
-//     clickedElement.className === 'cart-x' ||
-//     clickedElement.parentElement.className === 'cart-x'
-//   ) {
-//     // gets parent div IF child is clicked
-//     clickedElement = clickedElement.closest('.cart-x');
-//     const nodeToDelete = ref(myDatabase, `/cart/${clickedElement.id}`);
-
-//     remove(nodeToDelete);
-//   }
-// };
-// cartDropdownList.addEventListener('click', removeCartItem);
-
-// /* #endregion - cart item removal */
+    const totalCost = costArray.reduce((total, curr) => total + curr, 0);
+    totalCostElement.textContent = `$${totalCost.toFixed(2)}`;
+  } else {
+    totalCostElement.textContent = '$0.00';
+  }
+};
 
 // // Search bar implementation
 
@@ -291,14 +300,10 @@ const resetInput = document.querySelector('.product__reset');
 
 // // search function
 const searchFunction = (stock, value) => {
-  console.log(stock);
-  // console.log(value);
   let counter = 0;
   productGallery.innerHTML = '';
   stock.forEach((item, i) => {
     if (item.productName.toLowerCase().includes(value.trim().toLowerCase())) {
-      console.log('true', stock[i]);
-
       const newListItem = document.createElement('div');
       newListItem.innerHTML = `<img
       src=${item.src}

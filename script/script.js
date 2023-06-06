@@ -23,8 +23,6 @@ main.addEventListener('click', () => {
 // **************************************************************************
 
 // IMAGE CAROUSEL
-// Approach : 2
-// Using Array so only 1 element(image) is seen(exists in viewport) at a given time so chnaging screen size willl not affect the slider. When the button is clicked: Empty the slider and show the next element (image) of the array. Repeat.Profit!
 
 const leftBtn = document.querySelector('.leftScroll');
 const rightBtn = document.querySelector('.rightScroll');
