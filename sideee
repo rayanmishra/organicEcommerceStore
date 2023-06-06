@@ -1,0 +1,127 @@
+<!--CARD 1-->
+<div class="product__card">
+  <img src="./assets/product1.jpeg" alt="image of tomatoes and cucumber" />
+  <p class="product--heading">Mix Vegetables</p>
+  <p class="body--text product--text">
+    Lorem ipsum dolor sit amet consectetur, Adipisicing Elit Laboriosam.
+  </p>
+  <div class="product--price">
+    <p>$350</p>
+    <p><span>$370</span></p>
+  </div>
+  <div class="cart--button">
+    <a href="#" data-product-index="0" class="btn btn--cart">Add To Cart</a>
+  </div>
+</div>
+
+<!--CARD 2-->
+<div class="product__card">
+  <img src="./assets/product2.jpeg" alt="image of lime" />
+  <p class="product--heading">Mix Vegetables</p>
+  <p class="body--text product--text">
+    Lorem ipsum dolor sit amet consectetur, Adipisicing Elit Laboriosam.
+  </p>
+  <div class="product--price">
+    <p>$350</p>
+    <p><span>$370</span></p>
+  </div>
+  <div class="cart--button">
+    <a href="#" data-product-index="1" class="btn btn--cart">Add To Cart</a>
+  </div>
+</div>
+
+<!--CARD 3-->
+<div class="product__card">
+  <img src="./assets/product3.jpeg" alt="image of eggplant" />
+  <p class="product--heading">Mix Vegetables</p>
+  <p class="body--text product--text">
+    Lorem ipsum dolor sit amet consectetur, Adipisicing Elit Laboriosam.
+  </p>
+  <div class="product--price">
+    <p>$350</p>
+    <p><span>$370</span></p>
+  </div>
+  <div class="cart--button">
+    <a href="#" data-product-index="2" class="btn btn--cart">Add To Cart</a>
+  </div>
+</div>
+
+<!--CARD 4-->
+<div class="product__card">
+  <img src="./assets/product4.jpeg" alt="image of cucumber" />
+  <p class="product--heading">Mix Vegetables</p>
+  <p class="body--text product--text">
+    Lorem ipsum dolor sit amet consectetur, Adipisicing Elit Laboriosam.
+  </p>
+  <div class="product--price">
+    <p>$350</p>
+    <p><span>$370</span></p>
+  </div>
+  <div class="cart--button">
+    <a href="#" data-product-index="3" class="btn btn--cart">Add To Cart</a>
+  </div>
+</div>
+
+<!--CARD 5-->
+<div class="product__card">
+  <img src="./assets/product5.jpeg" alt="image of green peas" />
+  <p class="product--heading">Mix Vegetables</p>
+  <p class="body--text product--text">
+    Lorem ipsum dolor sit amet consectetur, Adipisicing Elit Laboriosam.
+  </p>
+  <div class="product--price">
+    <p>$350</p>
+    <p><span>$370</span></p>
+  </div>
+  <div class="cart--button">
+    <a href="#" data-product-index="4" class="btn btn--cart">Add To Cart</a>
+  </div>
+</div>
+
+<!--CARD 6-->
+<div class="product__card">
+  <img src="./assets/product8.jpeg" alt="image of lettuce" />
+  <p class="product--heading">Mix Vegetables</p>
+  <p class="body--text product--text">
+    Lorem ipsum dolor sit amet consectetur, Adipisicing Elit Laboriosam.
+  </p>
+  <div class="product--price">
+    <p>$350</p>
+    <p><span>$370</span></p>
+  </div>
+  <div class="cart--button">
+    <a href="#" data-product-index="5" class="btn btn--cart">Add To Cart</a>
+  </div>
+</div>
+
+<!--CARD 7-->
+<div class="product__card">
+  <img src="./assets/product6.jpeg" alt="image of a vegetable" />
+  <p class="product--heading">Mix Vegetables</p>
+  <p class="body--text product--text">
+    Lorem ipsum dolor sit amet consectetur, Adipisicing Elit Laboriosam.
+  </p>
+  <div class="product--price">
+    <p>$350</p>
+    <p><span>$370</span></p>
+  </div>
+  <div class="cart--button">
+    <a href="#" data-product-index="6" class="btn btn--cart">Add To Cart</a>
+  </div>
+</div>
+
+<!--CARD 8-->
+<div class="product__card">
+  <img src="./assets/product7.jpeg" alt="image of lettuce" />
+  <p class="product--heading">Mix Vegetables</p>
+  <p class="body--text product--text">
+    Lorem ipsum dolor sit amet consectetur, Adipisicing Elit Laboriosam.
+  </p>
+  <div class="product--price">
+    <p>$350</p>
+    <p><span>$370</span></p>
+  </div>
+  <div class="cart--button">
+    <a href="#" data-product-index="7" class="btn btn--cart">Add To Cart</a>
+  </div>
+</div>
