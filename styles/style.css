@@ -537,7 +537,7 @@ html {
 .cart--grid {
   grid-template-columns: 1fr;
   gap: 1rem;
-  max-height: 30rem;
+  max-height: 20rem;
   overflow-y: scroll;
 }
 
@@ -1312,6 +1312,11 @@ html {
 .cart--text {
   font-size: 1.2rem;
   font-family: "Barlow", sans-serif;
+}
+@media (max-width: 700px) {
+  .cart--text {
+    font-size: 1rem;
+  }
 }
 
 .cart--empty {
