@@ -22,7 +22,25 @@ Organic is an e-commerce site that allows users to browse through a list of fres
 
 ## Preview
 
-![Organic store preview](https://github.com/rayanmishra/organicEcommerceStore/blob/main/assets/blog1.jpg).
+* Landing Section
+  
+![Organic store preview](https://github.com/rayanmishra/organicEcommerceStore/blob/main/assets/preview/organicHome.png).
+
+* Product Section
+  
+![Organic store preview](https://github.com/rayanmishra/organicEcommerceStore/blob/main/assets/preview/productsection.png).
+
+* Shopping cart
+  
+![Organic store preview](https://github.com/rayanmishra/organicEcommerceStore/blob/main/assets/preview/shoppingCart.png).
+
+* Sort product (price highest to lowest)
+  
+![Organic store preview](https://github.com/rayanmishra/organicEcommerceStore/blob/main/assets/preview/filter.png).
+
+* Search function (Searching for "organic")
+  
+![Organic store preview](https://github.com/rayanmishra/organicEcommerceStore/blob/main/assets/preview/searchFunction.png).
 
 
 
