@@ -329,8 +329,9 @@ const searchFunction = (stock, value) => {
     }
   });
   if (counter === 0) {
-    const newListItem = document.createElement('li');
-    newListItem.innerHTML = `<h2>Sorry Product not found. Try again ! </h2>`;
+    const newListItem = document.createElement('div');
+    newListItem.innerHTML = `<h2 class="search__error">Sorry ! Product not found. Try again ! </h2>`;
+    productGallery.classList.remove('grid');
     productGallery.appendChild(newListItem);
   }
 };

@@ -1060,6 +1060,12 @@ html {
   margin-left: 1rem;
 }
 
+.search__error {
+  display: block;
+  text-align: center;
+  color: #207200;
+}
+
 .product--price {
   display: -webkit-box;
   display: -ms-flexbox;
