@@ -1,11 +1,29 @@
-# Project Description
-Organic is a multi-page e-commerce site with a fully functional shopping cart connected to a real-time database, advanced product search and filter, scroll effects using Intersection Observation API, image carousel gallery and is fully responsive down to 320px.<br />
+# Organic EcommerceStore
 
-I learned a lot during this project in terms of problem-solving and programming. A few key lessons were:<br />
-Basics of Modular Javascript<br />
-Integration of Firebase for persistent data flow <br />
-Exploring some more awesome JS array methods <br />
-Using a preprocessor like SCSS/SASS <br />
+
+## Overview
+Organic is an e-commerce site that allows users to browse through a list of freshly grown produce and add them to their cart for purchase. The site also features a gallery section, along with the latest news and a contact page..<br />
+
+## Features
+* CRUD (Create(Add), Read, Update, Delete) products to the shopping cart
+* Product Search bar
+* Product filter option (Sort via price: ascending and descending, Bestselling product)
+* Image carousel gallery
+* Error handling for search bar
+* Fully responsive across various screen sizes
+
+ ## Technologies Used
+* JavaScript 
+* Firebase
+* Jest 
+* HTML5 
+* CSS3 
+* Sass 
+
+## Preview
+
+![Organic store preview](https://github.com/rayanmishra/organicEcommerceStore/blob/main/assets/blog1.jpg).
+
 
 
 
